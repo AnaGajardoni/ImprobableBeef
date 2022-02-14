@@ -83,17 +83,21 @@ function buildCharts(sample) {
     var barData = [{
       //x: sampleValues.map(s => s).slice(0,10).reverse(),
       x: sampleValues.slice(0,10).reverse(),
-      y: otuIds.map(o => "OTU " + o).slice(0, 10).reverse(),
+      y: otuIds.map(o => "OTU " + o + " ").slice(0, 10).reverse(),
       text: otuLabels.slice(0,10).reverse(),
       type: "bar",
       orientation: "h"
       
-      //,marker:{      color: ["red", "blue", "red", "blue", "red", "blue", "red", "blue", "red", "blue"]     }
     }];
     
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Top 10 Bacteria Cultures Found"
+      title: "Top 10 Bacteria Cultures Found",
+      font: {
+        family: 'Trebuchet MS',
+        size: 15,
+        color: "purple"
+      }
     };
 
     // 10. Use Plotly to plot the data with the layout. 
@@ -114,17 +118,19 @@ function buildCharts(sample) {
     
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-      title: "Bacteria Cultures Per Sample",
-      xaxis: {title: "OTU ID"}
+      title: { text: "Bacteria Cultures Per Sample" },
+      xaxis: {title: "OTU ID"},
+      font: {
+        family: 'Trebuchet MS',
+        size: 15,
+        color: "purple"
+      }
     };
     
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
 
     let freqById = data.metadata.filter(s => s.id == sample)[0].wfreq;
-
-    console.log(freqById);
-    console.log(sample);
 
     // 4. Create the trace for the gauge chart.
     var gaugeData = [{
@@ -149,9 +155,13 @@ function buildCharts(sample) {
     // 5. Create the layout for the gauge chart.
 
     var gaugeLayout = {
-      //margin: { t: 30, r: 30, l: 30, b: 30 },
+      margin: { t: 40, r: 40, l: 40, b: 40 },
       //font: { color: "black" }
-      automatic: true
+      font: {
+        family: 'Trebuchet MS',
+        size: 15,
+        color: "purple"
+      }
     };
     
     // 6. Use Plotly to plot the gauge data and layout.
